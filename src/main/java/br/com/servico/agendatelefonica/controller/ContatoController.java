@@ -1,24 +1,29 @@
 package br.com.servico.agendatelefonica.controller;
 
-import br.com.servico.agendatelefonica.models.Contatos;
-import br.com.servico.agendatelefonica.repository.ContatosRepository;
+import br.com.servico.agendatelefonica.models.Contato;
+import br.com.servico.agendatelefonica.service.ContatoService;
+import br.com.servico.agendatelefonica.utils.Endpoints;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 
 @RestController
-@RequestMapping({"/contatos"})
-public class ContatosController {
-    private ContatosRepository repository;
+@RequestMapping({Endpoints.REQUEST_CONTATOS})
+public class ContatoController {
 
-    ContatosController(ContatosRepository contatosRepository){
-        this.repository = contatosRepository;
-    }
+    @Autowired
+    ContatoService contatoService;
+
+//    ContatosController(ContatosRepository contatosRepository){
+//        this.repository = contatosRepository;
+//    }
 
     @GetMapping
-    public List findAll(){
-        return repository.findAll();
+    public List<Contato> getContatos(){
+        return contatoService.findAll();
     }
 /*O método findAll é direto ao ponto: utiliza o método findAll da interface JpaRepository que faz um select * from contacts.
 
@@ -29,11 +34,10 @@ Por padrão, o formato do resultado será um JSON.
 * */
 
 
-    @GetMapping(path = {"{/id}"})
-    public ResponseEntity findById(@PathVariable long id){
-        return repository.findById(id)
-                .map(record -> ResponseEntity.ok().body(record))
-                .orElse(ResponseEntity.notFound().build());
+    @GetMapping(path = {Endpoints.REQUEST_CONTATOS_FIND_GET_BY_ID})
+    public ResponseEntity<Contato> getById(@PathVariable("id") Long id) throws Exception {
+        return ResponseEntity.ok(contatoService.getById(id)
+                .orElseThrow(() -> new NoSuchElementException("Contato não encontrado")));
     }
     /*
     * Seguindo os conceitos RESTful, é necessário passar na URL o ID do registro. A anotação @PathVariable vincula o parâmetro passado pelo método com a variável do path. Note que o parâmetro long id tem o mesmo nome do path declarado em @GetMapping(path = {"/{id}"}).
@@ -46,26 +50,21 @@ Existe também a diferença no tipo do retorno dos métodos no controller. Equan
     * */
 
     @PostMapping
-    public Contatos create(@RequestBody Contatos contato){
-        return repository.save(contato);
+    public Contato criaContato(@RequestBody Contato contato){
+        return contatoService.saveContato(contato);
     }
 
     /*O método create também é bem direto ao ponto: apenas chama o método save da interface JpaRepository. Após criar o registro na tabela, retorna o contato com o atributo id populado e o registro é retornado no corpo de resposta.
 
 A anotação @RequestBody indica que o parâmetro contact será vinculado do corpo da requisição. Isso significa que o método espera o seguinte conteúdo do corpo da requisição (em formato JSON):*/
 
-    @PutMapping(value="/{id}")
-    public ResponseEntity update(@PathVariable("id") long id,
-                                 @RequestBody Contatos contatos) {
-        return repository.findById(id)
-                .map(record -> {
-                    record.setNome(contatos.getNome());
-                    record.setEmail(contatos.getEmail());
-                    record.setTelefone(contatos.getTelefone());
-                    Contatos updated = repository.save(record);
-                    return ResponseEntity.ok().body(updated);
-                }).orElse(ResponseEntity.notFound().build());
+
+    @PutMapping(value=Endpoints.REQUEST_CONTATOS_FIND_GET_BY_ID)
+    public ResponseEntity<Contato> updateContato(@PathVariable("id") long id, @RequestBody Contato contato){
+        return contatoService.updateContato(contato);
     }
+
+
     /*
     * Para atualizar um registro, é necessário informar seu ID no caminho da URL (similar ao processo de obter um registro específico). Caso deseje usar um nome de variável diferente do que foi utilizado também pode utilizar o seguinte código @PathVariable("recordID") long id, desde que otherID também seja o nome em @PutMapping(value="/{otherID}"). Além do ID, também é necessário passar o objeto com os dados atualizados.
 
@@ -77,14 +76,24 @@ Um ponto importante para esse método (e também para o processo de criação de
 
 Pode-se ainda desenvolver uma série de validações para melhorar esse código. Por exemplo, pode-se adicionar uma validação para garantir que o id do registro passado como parâmetro é o mesmo id passado na URL. Pode-se também utilizar a API Java Beans para aplicar validações de tamanho de campo, obrigatoriedade de atributos, etc. É aqui que entrar toda a lógica de negócio necessária para a aplicação funcionar da forma que se é esperado.*/
 
-    @DeleteMapping(path ={"/{id}"})
-    public ResponseEntity <?> delete(@PathVariable long id) {
-        return repository.findById(id)
-                .map(record -> {
-                    repository.deleteById(id);
-                    return ResponseEntity.ok().build();
-                }).orElse(ResponseEntity.notFound().build());
+    @DeleteMapping(Endpoints.REQUEST_CONTATOS_FIND_GET_BY_ID)
+    public ResponseEntity<Contato> deleteById(@PathVariable("id") Long id) throws Exception {
+        try {
+            contatoService.deleteContato(id);
+        }catch(Exception e){
+            System.out.println(e.getMessage());
+        }
+        return (ResponseEntity<Contato>)ResponseEntity.ok();
     }
+
+//    @DeleteMapping(path ={"/{id}"})
+//    public ResponseEntity <?> delete(@PathVariable long id) {
+//        return repository.findById(id)
+//                .map(record -> {
+//                    repository.deleteById(id);
+//                    return ResponseEntity.ok().build();
+//                }).orElse(ResponseEntity.notFound().build());
+//    }
 
     /*
     * Para remover um contato pelo ID, utiliza-se o id que foi passado como parâmetro para procurar se o registro existe na base. Caso exista, utiliza-se o método deleteById da interface JpaRepository e retorna o status HTTP 200 para indicar sucesso. Caso o registro não exista, retorna um erro HTTP 404.*/

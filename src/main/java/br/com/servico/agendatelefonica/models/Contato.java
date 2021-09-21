@@ -1,8 +1,6 @@
 package br.com.servico.agendatelefonica.models;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -13,7 +11,9 @@ import javax.persistence.Id;
 @NoArgsConstructor
 @Data
 @Entity
-public class Contatos {
+@Getter
+@Setter
+public class Contato {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
