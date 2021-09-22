@@ -1,6 +1,6 @@
 package br.com.servico.agendatelefonica.repository;
 
-import br.com.servico.agendatelefonica.models.entities.Contato;
+import br.com.servico.agendatelefonica.models.Contato;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

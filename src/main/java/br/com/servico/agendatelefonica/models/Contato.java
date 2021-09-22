@@ -1,4 +1,4 @@
-package br.com.servico.agendatelefonica.models.entities;
+package br.com.servico.agendatelefonica.models;
 
 import lombok.*;
 

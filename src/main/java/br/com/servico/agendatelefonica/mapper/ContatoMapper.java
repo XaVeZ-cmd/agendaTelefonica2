@@ -1,10 +1,8 @@
 package br.com.servico.agendatelefonica.mapper;
 
-import br.com.servico.agendatelefonica.models.dto.ContatoDTO;
-import br.com.servico.agendatelefonica.models.entities.Contato;
-import org.springframework.stereotype.Component;
+import br.com.servico.agendatelefonica.dto.ContatoDTO;
+import br.com.servico.agendatelefonica.models.Contato;
 
-@Component
 public class ContatoMapper {
 
     public Contato toEntity(ContatoDTO contatoDTO){
@@ -18,8 +16,8 @@ public class ContatoMapper {
     public ContatoDTO toDTO(Contato contato){
         ContatoDTO contatoDTO = new ContatoDTO();
         contatoDTO.setNome(contato.getNome());
-        contatoDTO.setEmail(contato.getEmail());
-        contatoDTO.setTelefone(contatoDTO.getTelefone());
+        contatoDTO.setEmail(contatoDTO.getEmail());
+        contatoDTO.setTelefone(contato.getTelefone());
         return contatoDTO;
     }
 }
