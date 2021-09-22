@@ -1,6 +1,6 @@
 package br.com.servico.agendatelefonica.service;
 
-import br.com.servico.agendatelefonica.models.Contato;
+import br.com.servico.agendatelefonica.models.entities.Contato;
 import br.com.servico.agendatelefonica.repository.ContatoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
