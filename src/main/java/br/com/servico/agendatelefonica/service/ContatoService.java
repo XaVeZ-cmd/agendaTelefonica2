@@ -1,10 +1,15 @@
 package br.com.servico.agendatelefonica.service;
 
+import br.com.servico.agendatelefonica.dto.ContatoDTO;
+import br.com.servico.agendatelefonica.exceptions.BusinessException;
+import br.com.servico.agendatelefonica.exceptions.NotFoundException;
+import br.com.servico.agendatelefonica.mapper.ContatoMapper;
 import br.com.servico.agendatelefonica.models.Contato;
 import br.com.servico.agendatelefonica.repository.ContatoRepository;
+import br.com.servico.agendatelefonica.utils.Messages;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 
 import java.util.List;
@@ -12,37 +17,50 @@ import java.util.Optional;
 
 @Service
 public class ContatoService {
-    ContatoRepository contatoRepository;
+    @Autowired
+    private ContatoRepository contatoRepository;
 
     @Autowired
-    ContatoService(ContatoRepository contatoRepository){
-        this.contatoRepository = contatoRepository;
+    private ContatoMapper contatoMapper;
+
+
+    @Transactional
+    public List<ContatoDTO> findAll() {
+        return contatoMapper.toDTO(contatoRepository.findAll());
     }
 
-    public List<Contato> findAll() {
-        return contatoRepository.findAll();
+    @Transactional
+    public ContatoDTO getById(Long id) {
+        return contatoRepository.findById(id).map(contatoMapper::toDTO).orElseThrow(NotFoundException::new);
     }
 
-    public Optional<Contato> getById(Long id) {
-        return contatoRepository.findById(id);
+    @Transactional
+    public ContatoDTO save(ContatoDTO contatoDTO){
+        Optional<Contato> optionalContato = contatoRepository.findByEmail(contatoDTO.getEmail());
+        if(optionalContato.isPresent()){
+            throw new BusinessException(Messages.CONTATO_EXISTE);
+        }
+        Contato contato = contatoMapper.toEntity(contatoDTO);
+        contatoRepository.save(contato);
+        return contatoMapper.toDTO(contato);
     }
 
-    public Contato saveContato(Contato contato){
-        return contatoRepository.save(contato);
+    @Transactional
+    public ContatoDTO update(ContatoDTO contatoDTO) {
+        Optional<Contato> optionalContato = contatoRepository.findByEmail(contatoDTO.getEmail());
+            if(optionalContato.isPresent()){
+                throw new BusinessException(Messages.CONTATO_NAO_EXISTE);
+            }
+
+            Contato contato = contatoMapper.toEntity(contatoDTO);
+            contatoRepository.save(contato);
+            return contatoMapper.toDTO(contato);
     }
 
-    public ResponseEntity<Contato> updateContato(Contato contato) {
-        return contatoRepository.findById(contato.getId())
-                .map(gravar -> {
-                    gravar.setNome(contato.getNome());
-                    gravar.setEmail(contato.getEmail());
-                    gravar.setTelefone(contato.getTelefone());
-                    Contato updateContato = contatoRepository.save(gravar);
-                    return ResponseEntity.ok().body(updateContato);
-                }).orElse(ResponseEntity.notFound().build());
-    }
-
-    public void deleteContato(Long id) {
-        contatoRepository.deleteById(id);
+    @Transactional
+    public ContatoDTO delete(Long id) {
+        ContatoDTO contatoDTO = this.getById(id);
+        contatoRepository.delete(contatoDTO.getId());
+        return contatoDTO;
     }
 }

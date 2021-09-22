@@ -1,5 +1,6 @@
 package br.com.servico.agendatelefonica.models;
 
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import lombok.*;
 
 import javax.persistence.Entity;
@@ -16,6 +17,7 @@ import javax.persistence.Id;
 public class Contato {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @JsonSerialize
     private Long id;
 
     private String nome;
