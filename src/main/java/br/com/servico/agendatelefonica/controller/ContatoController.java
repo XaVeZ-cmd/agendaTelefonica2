@@ -37,9 +37,9 @@ public class ContatoController {
        return ResponseEntity.ok(contatoService.update(contatoDTO));
     }
 
-    @DeleteMapping(Endpoints.REQUEST_CONTATOS_FIND_GET_BY_ID)
-    public ResponseEntity<ContatoDTO> delete(@PathVariable Long id){
-        return ResponseEntity.ok(contatoService.delete(id));
-    }
+//    @DeleteMapping(Endpoints.REQUEST_CONTATOS_FIND_GET_BY_ID)
+//    public ResponseEntity<ContatoDTO> delete(@PathVariable Long id){
+//        return ResponseEntity.ok(contatoService.delete(id));
+//    }
 
 }

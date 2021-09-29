@@ -1,5 +1,6 @@
 package br.com.servico.agendatelefonica.dto;
 
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import lombok.Data;
 import org.springframework.lang.Nullable;
 import org.springframework.stereotype.Component;
