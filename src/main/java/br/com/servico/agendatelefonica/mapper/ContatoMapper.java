@@ -21,7 +21,7 @@ public class ContatoMapper {
     public ContatoDTO toDTO(Contato contato){
         ContatoDTO contatoDTO = new ContatoDTO();
         contatoDTO.setNome(contato.getNome());
-        contatoDTO.setEmail(contatoDTO.getEmail());
+        contatoDTO.setEmail(contato.getEmail());
         contatoDTO.setTelefone(contato.getTelefone());
         return contatoDTO;
     }

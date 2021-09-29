@@ -12,12 +12,10 @@ import javax.persistence.Id;
 @NoArgsConstructor
 @Data
 @Entity
-@Getter
-@Setter
 public class Contato {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @JsonSerialize
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private String nome;
