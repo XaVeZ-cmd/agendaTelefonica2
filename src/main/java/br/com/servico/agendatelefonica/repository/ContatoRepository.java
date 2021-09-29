@@ -10,6 +10,5 @@ import java.util.Optional;
 public interface ContatoRepository extends JpaRepository<Contato, Long> {
     Optional<Contato> findByEmail(String email);
 
-//    void delete(Long id);
 
 }

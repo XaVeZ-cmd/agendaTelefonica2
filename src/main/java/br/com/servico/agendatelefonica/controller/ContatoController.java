@@ -10,35 +10,35 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping({Endpoints.REQUEST_CONTATOS})
+@RequestMapping({ Endpoints.REQUEST_CONTATOS })
 public class ContatoController {
 
-    @Autowired
-    ContatoService contatoService;
+	@Autowired
+	ContatoService contatoService;
 
-    @GetMapping //OK
-    public ResponseEntity<List<ContatoDTO>> findAll(){
-        return ResponseEntity.ok(contatoService.findAll());
-    }
+	@GetMapping // OK
+	public ResponseEntity<List<ContatoDTO>> findAll() {
+		return ResponseEntity.ok(contatoService.findAll());
+	}
 
-    @GetMapping(path = {Endpoints.REQUEST_CONTATOS_FIND_GET_BY_ID}) //OK
-    public ResponseEntity<ContatoDTO> getById(@PathVariable Long id){
-        return ResponseEntity.ok(contatoService.getById(id));
-    }
+	@GetMapping(path = { Endpoints.REQUEST_CONTATOS_FIND_GET_BY_ID }) // OK
+	public ResponseEntity<ContatoDTO> getById(@PathVariable Long id) {
+		return ResponseEntity.ok(contatoService.getById(id));
+	}
 
-    @PostMapping //OK
-    public ResponseEntity<ContatoDTO> save(@RequestBody ContatoDTO contatoDTO){
-        return ResponseEntity.ok(contatoService.save(contatoDTO));
-    }
+	@PostMapping // OK
+	public ResponseEntity<ContatoDTO> save(@RequestBody ContatoDTO contatoDTO) {
+		return ResponseEntity.ok(contatoService.save(contatoDTO));
+	}
 
-    @PutMapping(value=Endpoints.REQUEST_CONTATOS_FIND_GET_BY_ID) //OK
-    public ResponseEntity<ContatoDTO> update(@RequestBody ContatoDTO contatoDTO){
-       return ResponseEntity.ok(contatoService.update(contatoDTO));
-    }
+	@PutMapping(value = Endpoints.REQUEST_CONTATOS_FIND_GET_BY_ID) // OK
+	public ResponseEntity<ContatoDTO> update(@RequestBody ContatoDTO contatoDTO) {
+		return ResponseEntity.ok(contatoService.update(contatoDTO));
+	}
 
-//    @DeleteMapping(Endpoints.REQUEST_CONTATOS_FIND_GET_BY_ID)
-//    public ResponseEntity<ContatoDTO> delete(@PathVariable Long id){
-//        return ResponseEntity.ok(contatoService.delete(id));
-//    }
+	@DeleteMapping(Endpoints.REQUEST_CONTATOS_FIND_GET_BY_ID)
+	public ResponseEntity<ContatoDTO> delete(@PathVariable Long id) {
+		return ResponseEntity.ok(contatoService.delete(id));
+	}
 
 }
