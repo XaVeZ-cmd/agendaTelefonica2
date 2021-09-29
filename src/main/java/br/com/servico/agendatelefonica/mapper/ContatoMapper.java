@@ -12,6 +12,7 @@ public class ContatoMapper {
 
     public Contato toEntity(ContatoDTO contatoDTO){
         Contato contato = new Contato();
+        contato.setId(contatoDTO.getId());
         contato.setNome(contatoDTO.getNome());
         contato.setEmail(contatoDTO.getEmail());
         contato.setTelefone(contatoDTO.getTelefone());
@@ -20,6 +21,7 @@ public class ContatoMapper {
 
     public ContatoDTO toDTO(Contato contato){
         ContatoDTO contatoDTO = new ContatoDTO();
+        contatoDTO.setId(contato.getId());
         contatoDTO.setNome(contato.getNome());
         contatoDTO.setEmail(contato.getEmail());
         contatoDTO.setTelefone(contato.getTelefone());

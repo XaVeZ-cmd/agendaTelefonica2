@@ -57,10 +57,11 @@ public class ContatoService {
             return contatoMapper.toDTO(contato);
     }
 
-    @Transactional
-    public ContatoDTO delete(Long id) {
-        ContatoDTO contatoDTO = this.getById(id);
-        contatoRepository.delete(contatoDTO.getId());
-        return contatoDTO;
-    }
+//    @Transactional
+//    public ContatoDTO delete(Long id) {
+//        ContatoDTO contatoDTO = this.getById(id);
+//        contatoRepository.delete(contatoDTO.getId());
+//        return contatoDTO;
+//    }
+
 }
