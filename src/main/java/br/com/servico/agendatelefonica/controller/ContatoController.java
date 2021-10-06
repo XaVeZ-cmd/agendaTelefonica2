@@ -22,7 +22,7 @@ public class ContatoController {
         return ResponseEntity.ok(contatoService.findAll());
     }
 
-    @GetMapping(path = {Endpoints.REQUEST_CONTATOS_FIND_GET_BY_ID}) //OK
+    @GetMapping(path = Endpoints.REQUEST_CONTATOS_FIND_GET_BY_ID) //OK
     public ResponseEntity<ContatoDTO> getById(@PathVariable Long id){
         return ResponseEntity.ok(contatoService.getById(id));
     }
@@ -32,14 +32,14 @@ public class ContatoController {
         return ResponseEntity.ok(contatoService.save(contatoDTO));
     }
 
-    @PutMapping(value=Endpoints.REQUEST_CONTATOS_FIND_GET_BY_ID) //OK
+    @PutMapping(value = Endpoints.REQUEST_CONTATOS_FIND_GET_BY_ID) //OK
     public ResponseEntity<ContatoDTO> update(@RequestBody ContatoDTO contatoDTO){
        return ResponseEntity.ok(contatoService.update(contatoDTO));
     }
 
-//    @DeleteMapping(Endpoints.REQUEST_CONTATOS_FIND_GET_BY_ID)
-//    public ResponseEntity<ContatoDTO> delete(@PathVariable Long id){
-//        return ResponseEntity.ok(contatoService.delete(id));
-//    }
+    @DeleteMapping(Endpoints.REQUEST_CONTATOS_FIND_GET_BY_ID)
+    public ResponseEntity<ContatoDTO> delete(@PathVariable Long id){
+        return ResponseEntity.ok(contatoService.delete(id));
+    }
 
 }

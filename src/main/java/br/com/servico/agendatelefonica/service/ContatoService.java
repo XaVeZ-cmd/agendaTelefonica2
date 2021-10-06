@@ -57,11 +57,21 @@ public class ContatoService {
             return contatoMapper.toDTO(contato);
     }
 
+    @Transactional
+    public ContatoDTO delete(Long id) {
+        ContatoDTO contatoDTO = this.getById(id);
+        contatoRepository.deleteById(id);
+        return contatoDTO;
+    }
 //    @Transactional
-//    public ContatoDTO delete(Long id) {
-//        ContatoDTO contatoDTO = this.getById(id);
-//        contatoRepository.delete(contatoDTO.getId());
-//        return contatoDTO;
+//    public ContatoDTO delete(ContatoDTO contatoDTO){
+//        Optional<Contato> optionalContato = contatoRepository.findByEmail(contatoDTO.getEmail());
+//        if(optionalContato.isPresent()){
+//            throw new BusinessException(Messages.CONTATO_EXISTE);
+//        }
+//        Contato contato = contatoMapper.toEntity(contatoDTO);
+//        contatoRepository.delete(contato);
+//        return contatoMapper.toDTO(contato);
 //    }
 
 }
