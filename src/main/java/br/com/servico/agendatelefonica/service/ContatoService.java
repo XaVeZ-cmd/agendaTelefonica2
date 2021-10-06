@@ -23,7 +23,6 @@ public class ContatoService {
     @Autowired
     private ContatoMapper contatoMapper;
 
-
     @Transactional
     public List<ContatoDTO> findAll() {
         return contatoMapper.toDTO(contatoRepository.findAll());
