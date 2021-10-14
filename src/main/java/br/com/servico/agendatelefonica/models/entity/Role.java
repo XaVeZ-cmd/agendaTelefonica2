@@ -1,6 +1,5 @@
 package br.com.servico.agendatelefonica.models.entity;
 
-import java.io.Serializable;
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -13,7 +12,7 @@ import lombok.Data;
 @Entity
 @Data
 
-public class Role implements GrantedAuthority, Serializable {
+public class Role implements GrantedAuthority {
 
 	private static final long serialVersionUID = 1L;
 	
