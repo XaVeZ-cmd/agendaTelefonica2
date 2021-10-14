@@ -1,12 +1,13 @@
 package br.com.servico.agendatelefonica.service;
 
-import br.com.servico.agendatelefonica.dto.ContatoDTO;
-import br.com.servico.agendatelefonica.exceptions.BusinessException;
-import br.com.servico.agendatelefonica.exceptions.NotFoundException;
 import br.com.servico.agendatelefonica.mapper.ContatoMapper;
-import br.com.servico.agendatelefonica.models.Contato;
+import br.com.servico.agendatelefonica.models.dto.ContatoDTO;
+import br.com.servico.agendatelefonica.models.entity.Contato;
 import br.com.servico.agendatelefonica.repository.ContatoRepository;
 import br.com.servico.agendatelefonica.utils.Messages;
+import br.com.servico.agendatelefonica.utils.exceptions.BusinessException;
+import br.com.servico.agendatelefonica.utils.exceptions.NotFoundException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

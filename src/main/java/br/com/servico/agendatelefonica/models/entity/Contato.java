@@ -1,4 +1,4 @@
-package br.com.servico.agendatelefonica.models;
+package br.com.servico.agendatelefonica.models.entity;
 
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import lombok.*;

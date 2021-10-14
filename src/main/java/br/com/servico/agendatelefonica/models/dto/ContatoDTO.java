@@ -1,4 +1,4 @@
-package br.com.servico.agendatelefonica.dto;
+package br.com.servico.agendatelefonica.models.dto;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;

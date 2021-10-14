@@ -1,4 +1,4 @@
-package br.com.servico.agendatelefonica.exceptions;
+package br.com.servico.agendatelefonica.utils.exceptions;
 
 import br.com.servico.agendatelefonica.utils.Messages;
 

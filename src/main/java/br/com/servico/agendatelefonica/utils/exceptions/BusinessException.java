@@ -1,4 +1,4 @@
-package br.com.servico.agendatelefonica.exceptions;
+package br.com.servico.agendatelefonica.utils.exceptions;
 
 public class BusinessException extends RuntimeException{
     public BusinessException(String message){

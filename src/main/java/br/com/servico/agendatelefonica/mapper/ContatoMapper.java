@@ -1,7 +1,8 @@
 package br.com.servico.agendatelefonica.mapper;
 
-import br.com.servico.agendatelefonica.dto.ContatoDTO;
-import br.com.servico.agendatelefonica.models.Contato;
+import br.com.servico.agendatelefonica.models.dto.ContatoDTO;
+import br.com.servico.agendatelefonica.models.entity.Contato;
+
 import org.springframework.stereotype.Component;
 
 import java.util.List;

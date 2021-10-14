@@ -1,6 +1,6 @@
 package br.com.servico.agendatelefonica.controller;
 
-import br.com.servico.agendatelefonica.dto.ContatoDTO;
+import br.com.servico.agendatelefonica.models.dto.ContatoDTO;
 import br.com.servico.agendatelefonica.service.ContatoService;
 import br.com.servico.agendatelefonica.utils.Endpoints;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +21,8 @@ public class ContatoController {
 		return ResponseEntity.ok(contatoService.findAll());
 	}
 
-	@GetMapping(path = { Endpoints.REQUEST_CONTATOS_FIND_GET_BY_ID }) // OK
+	@GetMapping(path = 
+		{ Endpoints.REQUEST_CONTATOS_FIND_GET_BY_ID }) // OK
 	public ResponseEntity<ContatoDTO> getById(@PathVariable Long id) {
 		return ResponseEntity.ok(contatoService.getById(id));
 	}
