@@ -64,13 +64,6 @@
 			<version>8.0.26</version>
 		</dependency>
 
-		<!-- Driver postgres-->
-		<dependency>
-			<groupId>org.postgresql</groupId>
-			<artifactId>postgresql</artifactId>
-			<version>42.2.24</version>
-		</dependency>
-
 		<!-- Driver thymeleaf -->
 		<dependency>
 			<groupId>org.thymeleaf</groupId>
