@@ -45,7 +45,7 @@ public class Usuario implements UserDetails {
 		return this.login;
 	}
 
-	
+
 	@Override
 	public boolean isAccountNonExpired() {
 		return true;
