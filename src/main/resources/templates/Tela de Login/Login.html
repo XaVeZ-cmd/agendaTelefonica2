@@ -4,9 +4,9 @@
         <title>Login</title>
 
         <!-- Inicio CSS -->
-        <link rel="stylesheet" href="bootstrap5.0.1/css/bootstrap.css" type="text/css">
-        <link rel="stylesheet" href="bootstrap5.0.1/css/estilosLogin.css" type="text/css">
-        <link rel="stylesheet" href="bootstrap4.1.1/css/bootstrap.css">
+        <link rel="stylesheet" href="bootstrap/css/bootstrap.css" type="text/css">
+        <link rel="stylesheet" href="bootstrap/css/estilosLogin.css" type="text/css">
+        <link rel="stylesheet" href="bootstrap/css/bootstrap4.1.1.css">
         <!-- Fim CSS -->
 
         <meta charset="UTF-8">
@@ -42,9 +42,9 @@
         <div class="container login-container">
             <div class="row">
 
-                <!-- Inicio login aluno -->
+                <!-- Inicio login -->
                 <div class="col-md-6 login-form-1">
-                    <h3>Login do aluno</h3>
+                    <h3>Login</h3>
                     <form>
                         <div class="form-group">
                             <input type="text" class="form-control" placeholder="Digite seu usuário *" value="" required=""/>
@@ -69,39 +69,7 @@
                         </div>
                     </form>
                 </div>
-                <!-- Fim login aluno -->
-
-                <!-- Inicio login professor -->
-                <div class="col-md-6 login-form-2">
-                    <h3>Login do professor</h3>
-                    <form>
-                        <div class="form-group">
-                            <input type="text" class="form-control" placeholder="Digite sua matrícula *" value=""/>
-                        </div>
-
-                        <div class="form-group">
-                            <input type="password" id="password2" class="form-control" placeholder="Digite sua senha *" value=""  minlength="8" maxlength="50" size="50" autocomplete="on" required=""/>
-                            <label id="checkLabel">
-                                <input type="checkbox" class="imgPROF" onclick="showPass2()"> 
-                                Mostrar senha</label>
-                        </div>
-
-                        <div class="form-group">
-                            <input id="btnProf" type="submit" class="btnSubmit" value="Acessar"/>
-                        </div>
-
-                        <div class="form-group">
-                            <input id="checkboxProf" type="checkbox" name="lembrarSenha" value="">
-                            <label id="labelCheckboxProf" for="lembrarSenha">Lembrar por 15 dias</label>   
-                        </div>
-
-                        <div class="form-group">
-                            <a href="esqueciMinhaSenha.html" class="ForgetPwd" value="Login">Equeceu sua senha?</a>
-                        </div>
-
-                    </form>
-                </div>
-                <!-- Fim login professor -->
+                <!-- Fim login -->
 
                 <div class="form-group">
                     <a href="loginADM.html" value="">É Administrador?</a>
