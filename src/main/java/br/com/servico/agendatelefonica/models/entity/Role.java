@@ -20,7 +20,7 @@ public class Role implements GrantedAuthority {
 	private static final long serialVersionUID = 1L;
 	
 	@Id
-	@Column(name = "nome_role")
+	@Column(name = "nome_role", nullable = false)
 	private String nomeRole;
 	
 	@ManyToMany

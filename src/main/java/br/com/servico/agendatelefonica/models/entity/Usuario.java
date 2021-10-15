@@ -24,10 +24,10 @@ public class Usuario implements UserDetails {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@Column(name = "login")
+	@Column(name = "login", nullable = false)
 	private String login;
 	
-	@Column(name = "senha")
+	@Column(name = "senha", nullable = false)
 	private String senha;
 	
 	@ManyToMany
