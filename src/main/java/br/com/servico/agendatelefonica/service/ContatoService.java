@@ -5,8 +5,8 @@ import br.com.servico.agendatelefonica.models.dto.ContatoDTO;
 import br.com.servico.agendatelefonica.models.entity.Contato;
 import br.com.servico.agendatelefonica.repository.ContatoRepository;
 import br.com.servico.agendatelefonica.utils.Messages;
-import br.com.servico.agendatelefonica.utils.exceptions.BusinessException;
 import br.com.servico.agendatelefonica.utils.exceptions.NotFoundException;
+import br.com.servico.agendatelefonica.utils.exceptions.BusinessException;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,6 +17,7 @@ import java.util.Optional;
 
 @Service
 public class ContatoService {
+
 	@Autowired
 	private ContatoRepository contatoRepository;
 
@@ -35,7 +36,7 @@ public class ContatoService {
 
 	@Transactional
 	public ContatoDTO save(ContatoDTO contatoDTO) {
-		Optional<Contato> optionalContato = contatoRepository.findByEmail(contatoDTO.getEmail());
+		Optional<Contato> optionalContato = contatoRepository.findByIdContato(contatoDTO.getIdContatoDTO());
 		if (optionalContato.isPresent()) {
 			throw new BusinessException(Messages.CONTATO_EXISTE);
 		}
@@ -46,7 +47,7 @@ public class ContatoService {
 
 	@Transactional
 	public ContatoDTO update(ContatoDTO contatoDTO) {
-		Optional<Contato> optionalContato = contatoRepository.findByEmail(contatoDTO.getEmail());
+		Optional<Contato> optionalContato = contatoRepository.findByIdContato(contatoDTO.getIdContatoDTO());
 		if (optionalContato.isPresent()) {
 			throw new BusinessException(Messages.CONTATO_NAO_EXISTE);
 		}
@@ -59,7 +60,7 @@ public class ContatoService {
 	@Transactional
 	public ContatoDTO delete(Long id) {
 		ContatoDTO contatoDTO = this.getById(id);
-		contatoRepository.deleteById(contatoDTO.getId());
+		contatoRepository.deleteById(contatoDTO.getIdContatoDTO());
 		return contatoDTO;
 	}
 

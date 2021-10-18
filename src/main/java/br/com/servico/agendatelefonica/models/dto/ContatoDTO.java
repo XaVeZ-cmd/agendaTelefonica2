@@ -3,27 +3,27 @@ package br.com.servico.agendatelefonica.models.dto;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import javax.validation.Valid;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 
-import org.springframework.stereotype.Component;
+import java.util.List;
 
-@Component
 @Data
 @NoArgsConstructor
 public class ContatoDTO {
 
-	private Long id;
+	private Long idContatoDTO;
 
 	@NotEmpty
-	@Size(min = 3, max = 20)
-	private String nome;
+	@Size(min = 3, message = "O minimo de caracteres é 3")
+	private String nomeDTO;
 
 	@NotEmpty
-	@Size(min = 10, max = 100)
-	private String email;
+	@Valid
+	private List<EmailDTO> emails;
 
+	@Valid
 	@NotEmpty
-	@Size(min = 13, max = 15)
-	private String telefone;
+	private List<TelefoneDTO> telefones;
 }
